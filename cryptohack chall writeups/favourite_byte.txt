@@ -1,0 +1,18 @@
+Favourite byte
+
+I've hidden my data using XOR with a single byte. Don't forget to decode from hex first.
+
+73626960647f6b206821204f21254f7d694f7624662065622127234f726927756d 
+
+
+When we run the following code we get 255 byte strings.By carefully observing all those from beginning we can find flag in between.
+def single_byte_xor(string,key):
+        return bytes([i^key for i in string])
+
+
+hexstring='73626960647f6b206821204f21254f7d694f7624662065622127234f726927756d'
+byte_string=bytes.fromhex(hexstring)
+for i in range(0,256):
+        print(single_byte_xor(byte_string,i))
+
+crypto{0x10_15_my_f4v0ur173_by7e}
