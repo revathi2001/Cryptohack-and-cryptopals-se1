@@ -1,0 +1,15 @@
+XOR Starter
+
+Given the string "label", XOR each character with the integer 13. Convert these integers back to a string and submit the flag as crypto{new_string}.
+
+Using the following code we get flag:
+string="label"
+integer=13
+int_binary=bin(integer)
+for i in string:
+        p=ord(i)
+        x=p ^ integer
+        x_bin=bin(x)
+        print(chr(int(x_bin, 2)),end="")
+
+crypto{aloha}
