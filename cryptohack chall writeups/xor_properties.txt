@@ -1,0 +1,29 @@
+XOR Properties
+
+Below is a series of outputs where three random keys have been XOR'd together and with the flag. Use the above properties to undo the encryption in the final line to obtain the flag.
+
+KEY1 = a6c8b6733c9b22de7bc0253266a3867df55acde8635e19c73313
+KEY2 ^ KEY1 = 37dcb292030faa90d07eec17e3b1c6d8daf94c35d4c9191a5e1e
+KEY2 ^ KEY3 = c1545756687e7573db23aa1c3452a098b71a7fbf0fddddde5fc1
+FLAG ^ KEY1 ^ KEY3 ^ KEY2 = 04ee9855208a2cd59091d04767ae47963170d1660df7f56f5faf
+
+Before you XOR these objects, be sure to decode from hex to bytes. If you have pwntools installed, you have a xor function for byte strings: from pwn import xor
+
+Using the following code we get flag
+from pwnlib.util.fiddling import xor
+
+p='a6c8b6733c9b22de7bc0253266a3867df55acde8635e19c73313'
+q='37dcb292030faa90d07eec17e3b1c6d8daf94c35d4c9191a5e1e'
+r='c1545756687e7573db23aa1c3452a098b71a7fbf0fddddde5fc1'
+FLAG =' 04ee9855208a2cd59091d04767ae47963170d1660df7f56f5faf '
+        
+p=bytes.fromhex(p)
+q=bytes.fromhex(q)
+r=bytes.fromhex(r)
+FLAG=bytes.fromhex(FLAG)
+
+y1=xor(p,r,cut='max')
+y2=xor(y1,FLAG,cut='max')
+print(y2)
+
+crypto{x0r_i5_ass0c1at1v3}
